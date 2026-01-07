@@ -25,7 +25,7 @@ const NavBar = () => {
             </div>
 
         </nav>
-    </header>
+    </header> 
   )
 }
 
