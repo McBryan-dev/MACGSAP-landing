@@ -4,6 +4,8 @@ import clsx from 'clsx';
 import {Canvas} from '@react-three/fiber';
 import {Box, OrbitControls} from '@react-three/drei';
 
+import MacbookModel14 from './models/Macbook-14';
+
 const ProductViewer = () => {
 
     const {color, scale, setColor, setScale} = useMacbookStore();
@@ -40,13 +42,17 @@ const ProductViewer = () => {
                             className={clsx(scale === 0.08 ? 'bg-white text-black' : 'bg-transparent text-white')}
                         ><p>16"</p></div>
                     </div>
-                    
+
                 </div>
 
             </div>
 
             <Canvas id="canvas" camera={{position: [0, 2, 5], fov:50, near: 0.1, far: 100 }}>
-                <Box position={[0, 0, 0]} scale={10 *scale} material-color={color}></Box>
+                {/* <Box position={[0, 0, 0]} scale={10 *scale} material-color={color}></Box> */}
+                
+                <ambientLight intensity={1} />
+
+                <MacbookModel14 scale={0.06} positiion={[0, 0, 0]} />
                 <OrbitControls enableZoom={false} />
             </Canvas>
         </section>
