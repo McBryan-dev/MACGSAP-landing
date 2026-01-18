@@ -31,6 +31,18 @@ const ModelSwitcher = ({scale, isMobile}) => {
     const largeMacbookRef = useRef();
 
     const showLargeMacbook = scale === 0.08 || scale === 0.05;
+
+    useGSAP(() => {
+        if(showLargeMacbook) {
+            moveGroup(smallMacbookRef.current, 0);
+            moveGroup(largeMacbookRef.current, -OFFSET_DISTANCE);
+    
+            fadeMeshes(smallMacbookRef.current, 1);
+            fadeMeshes(largeMacbookRef.current, 0)
+        } else {
+
+        }
+    }, [scale])
     
     const controlConfig = {
         snap: true,
