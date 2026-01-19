@@ -3,6 +3,7 @@ import MacbookModel16 from '../models/Macbook-16';
 import MacbookModel14 from '../models/Macbook-14';
 import { PresentationControls } from '@react-three/drei';
 import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 
 
 
@@ -34,13 +35,17 @@ const ModelSwitcher = ({scale, isMobile}) => {
 
     useGSAP(() => {
         if(showLargeMacbook) {
+            moveGroup(smallMacbookRef.current, -OFFSET_DISTANCE);
+            moveGroup(largeMacbookRef.current, 0);
+    
+            fadeMeshes(smallMacbookRef.current, 0);
+            fadeMeshes(largeMacbookRef.current, 1)
+        } else {
             moveGroup(smallMacbookRef.current, 0);
             moveGroup(largeMacbookRef.current, -OFFSET_DISTANCE);
     
             fadeMeshes(smallMacbookRef.current, 1);
             fadeMeshes(largeMacbookRef.current, 0)
-        } else {
-
         }
     }, [scale])
     
@@ -61,11 +66,11 @@ const ModelSwitcher = ({scale, isMobile}) => {
                 </group>
             </PresentationControls>
 
-            {/* <PresentationControls {...controlConfig}>
+            <PresentationControls {...controlConfig}>
                 <group ref={smallMacbookRef}>
-                    <MacbookModel16 scale={isMobile ? 0.03 : 0.06} />
+                    <MacbookModel14 scale={isMobile ? 0.03 : 0.06} />
                 </group>
-            </PresentationControls> */}
+            </PresentationControls>
         </>
     )
 }
