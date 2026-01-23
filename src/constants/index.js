@@ -6,3 +6,5 @@ export const navLinks = [
     {label: "Vision"},
     {label: "Airpods"}
 ];
+
+export const noChangeParts = [];

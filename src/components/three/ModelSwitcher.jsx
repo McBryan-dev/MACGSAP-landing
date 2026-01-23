@@ -13,7 +13,7 @@ const OFFSET_DISTANCE = 5;
 const fadeMeshes = (group, opacity) => {
     if(!group) return;
 
-    group.transverse((child) => {
+    group.traverse((child) => {
         if(child.isMesh) {
             child.material.transport = true;
             gsap.to(child.material, {opacity, duration: ANIMATION_DURATION})
@@ -44,8 +44,8 @@ const ModelSwitcher = ({scale, isMobile}) => {
             moveGroup(smallMacbookRef.current, 0);
             moveGroup(largeMacbookRef.current, -OFFSET_DISTANCE);
     
-            // fadeMeshes(smallMacbookRef.current, 1);
-            // fadeMeshes(largeMacbookRef.current, 0)
+            fadeMeshes(smallMacbookRef.current, 1);
+            fadeMeshes(largeMacbookRef.current, 0)
         }
     }, [scale])
     
@@ -66,11 +66,11 @@ const ModelSwitcher = ({scale, isMobile}) => {
                 </group>
             </PresentationControls>
 
-            {/* <PresentationControls {...controlConfig}>
+            <PresentationControls {...controlConfig}>
                 <group ref={smallMacbookRef}>
                     <MacbookModel14 scale={isMobile ? 0.03 : 0.06} />
                 </group>
-            </PresentationControls> */}
+            </PresentationControls>
         </>
     )
 }
