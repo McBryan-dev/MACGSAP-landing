@@ -39,7 +39,7 @@ const ModelSwitcher = ({scale, isMobile}) => {
             moveGroup(largeMacbookRef.current, 0);
     
             fadeMeshes(smallMacbookRef.current, 0);
-            fadeMeshes(largeMacbookRef.current, 1)
+            fadeMeshes(largeMacbookRef.current, 1);
         } else {
             moveGroup(smallMacbookRef.current, 0);
             moveGroup(largeMacbookRef.current, OFFSET_DISTANCE);
@@ -49,7 +49,7 @@ const ModelSwitcher = ({scale, isMobile}) => {
         }
     }, [scale])
     
-    const controlConfig = {
+    const controlsConfig = {
         snap: true,
         speed: 2,
         zoom: 1,
@@ -60,13 +60,13 @@ const ModelSwitcher = ({scale, isMobile}) => {
 
     return (
         <>
-            <PresentationControls {...controlConfig}>
+            <PresentationControls {...controlsConfig}>
                 <group ref={largeMacbookRef}>
                     <MacbookModel16 scale={isMobile ? 0.05 : 0.08} />
                 </group>
             </PresentationControls>
 
-            <PresentationControls {...controlConfig}>
+            <PresentationControls {...controlsConfig}>
                 <group ref={smallMacbookRef}>
                     <MacbookModel14 scale={isMobile ? 0.03 : 0.06} />
                 </group>
