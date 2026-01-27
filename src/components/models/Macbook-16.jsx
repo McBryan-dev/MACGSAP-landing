@@ -11,11 +11,34 @@ Title: macbook pro M3 16 inch 2024
 import React from 'react'
 import { useGLTF } from '@react-three/drei';
 import { useTexture } from '@react-three/drei';
+import {noChangeParts} from '../../constants/index.js';
+import useMacbookStore from '../../store';
+import {useEffect} from 'react';
+import {Color} from 'three'
 
 export default function MacbookModel16(props) {
-  const { nodes, materials } = useGLTF('/models/macbook-16-transformed.glb')
+  // const { nodes, materials } = useGLTF('/models/macbook-16-transformed.glb')
   
-  const texture = useTexture('/screen.png')
+  // const texture = useTexture('/screen.png')
+
+  const { color } = useMacbookStore();
+
+  const { nodes, materials, scene } = useGLTF('/models/macbook-16-transformed.glb')
+  
+  const texture = useTexture('/screen.png');
+
+  useEffect(() => {
+    scene.traverse((child) => {
+
+      if(child.isMesh) {
+        //Change color only if the part name is NOT noChangeParts  
+        if(!noChangeParts.includes(child.name)) {
+          child.material.color = new Color(color);
+        }
+      }
+
+    })
+  }, [color])
   return (
     <group {...props} dispose={null}>
       <mesh geometry={nodes.Object_10.geometry} material={materials.PaletteMaterial001} rotation={[Math.PI / 2, 0, 0]} />
