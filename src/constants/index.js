@@ -1,3 +1,4 @@
+
 const navLinks = [
     {label: "Store"},
     {label: "Mac"},
