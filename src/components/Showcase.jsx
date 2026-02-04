@@ -1,6 +1,30 @@
-import React from 'react'
+import gsap from 'gsap';
+import React from 'react';
+import { useGSAP } from '@gsap/react';
+import { useMediaQuery } from 'react-responsive';
 
 const Showcase = () => {
+    const isTablet = useMediaQuery({query: '(max-width: 1024px)'});
+
+    useGSAP(() => {
+        if(!isTablet) {
+            const timeline = gsap.timeline({
+                scrollTrigger: {
+                    trigger: '#showcase',
+                    start: 'top top',
+                    end: 'bottom top',
+                    scrub: true,
+                    pin: true
+                }
+            })
+
+            timeline
+                .to('.mask img', {
+                    transform: 'scale(1.1)'
+                }).to('.content', {opacity: 1, y: 0, ease: 'power1.in'})
+        }
+    }, [isTablet])
+
     return (
         <section id="showcase">
             <div className="media">
@@ -34,8 +58,8 @@ const Showcase = () => {
                             </p>
                         </div>
                     </div>
-                    
-                    <div classNme="max-w-3xs space-y-14">
+
+                    <div className="max-w-3xs space-y-14">
                         <div className="space-y-2">
                             <p>Up to</p>
                             <h3>4X faster</h3>
