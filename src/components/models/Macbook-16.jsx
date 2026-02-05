@@ -14,19 +14,17 @@ import { useTexture } from '@react-three/drei';
 import {noChangeParts} from '../../constants/index.js';
 import useMacbookStore from '../../store';
 import {useEffect} from 'react';
-import {Color} from 'three'
+// import {Color} from 'three'
+import {Color, SRGBColorSpace} from 'three';
 
 export default function MacbookModel16(props) {
-  // const { nodes, materials } = useGLTF('/models/macbook-16-transformed.glb')
-  
-  // const texture = useTexture('/screen.png')
-
   const { color } = useMacbookStore();
-
   const { nodes, materials, scene } = useGLTF('/models/macbook-16-transformed.glb')
   
   const texture = useTexture('/screen.png');
-
+  texture.colorSpace = SRGBColorSpace;
+  texture.needsUpdate = true;
+  
   useEffect(() => {
     scene.traverse((child) => {
 
