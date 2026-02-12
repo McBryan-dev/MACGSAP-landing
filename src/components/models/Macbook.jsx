@@ -1,6 +1,7 @@
 import React from 'react'
 import { useGLTF, useVideoTexture } from '@react-three/drei'
 import useMacbookStore from '../../store/index.js';
+import { useEffect } from 'react';
 
 export default function MacbookModel(props) {
   const {color, texture} = useMacbookStore();
