@@ -1,13 +1,14 @@
-import React, { useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import StudioLights from './three/StudioLights.jsx';
 import { features, featureSequence } from '../constants/index.js';
 import clsx from 'clsx';
-import {Suspense, useRef} from 'react';
+import {Suspense, useRef, useEffect} from 'react';
 import MacbookModel from './models/Macbook';
 import {useMediaQuery} from 'react-responsive';
 import {Html} from '@react-three/drei';
 import useMacbookStore from '../store/index.js';
+import gsap from 'gsap'
+import { useGSAP } from '@gsap/react';
 
 const ModelScroll = () => {
     const groupRef = useRef(null);
@@ -24,8 +25,34 @@ const ModelScroll = () => {
                 playsInline: true,
                 preload: 'auto',
                 crossOrigin: 'anonymous'
-            })
+            });
+            v.load();
         })
+    }, [])
+
+    useGSAP(() => {
+        const modelTimeline = gsap.timeline({
+            scrollTrigger: {
+                trigger: '#f-canvas',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: 1,
+                pin: true
+            }
+        });
+
+        const timeline = gsap.timeline({
+            scrollTrigger: {
+                trigger: '#f-canvas',
+                start: 'top center',
+                end: 'bottom top',
+                scrub: 1
+            }
+        })
+
+        if(groupRef.current) {
+            modelTimeline.to(groupRef.current.rotation, {y: Math.PI * 2, ease: 'power1.inOut'})
+        }
     }, [])
 
     return (
