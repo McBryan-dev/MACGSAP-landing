@@ -20,7 +20,7 @@ const ModelScroll = () => {
             const v = document.createElement('video');
 
             Object.assign(v, {
-                src: feature.viedoPath,
+                src: feature.videoPath,
                 muted: true,
                 playsInline: true,
                 preload: 'auto',
@@ -53,7 +53,26 @@ const ModelScroll = () => {
         if(groupRef.current) {
             modelTimeline.to(groupRef.current.rotation, {y: Math.PI * 2, ease: 'power1.inOut'})
         }
+
+        //Content and Texture sync
+        timeline
+            .call(() => setTexture('/videos/feature-1.mp4'))
+            .to('box', {opacity: 1, y: 0, delay: 1})
+
+            .call(() => setTexture('/videos/feature-2.mp4'))
+            .to('box2', {opacity: 1, y: 0})
+
+            .call(() => setTexture('/videos/feature-3.mp4'))
+            .to('box3', {opacity: 1, y: 0})
+
+            .call(() => setTexture('/videos/feature-4.mp4'))
+            .to('box4', {opacity: 1, y: 0})
+
+            .call(() => setTexture('/videos/feature-5.mp4'))
+            .to('box5', {opacity: 1, y: 0})
     }, [])
+
+
 
     return (
         <group ref={groupRef}>
