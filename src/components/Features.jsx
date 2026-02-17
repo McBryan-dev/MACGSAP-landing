@@ -13,8 +13,8 @@ import { useGSAP } from '@gsap/react';
 const ModelScroll = () => {
     const groupRef = useRef(null);
     const isMobile = useMediaQuery({query: '(max-width: 1024px)'})
-    const {setTexture} =useMacbookStore()
-
+    const {setTexture} = useMacbookStore()
+ 
     useEffect(() => {
         featureSequence.forEach((feature) => {
             const v = document.createElement('video');
