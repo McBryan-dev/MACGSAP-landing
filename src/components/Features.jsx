@@ -101,7 +101,7 @@ const Features = () => {
             <div className="absolute inset-0">
                 {
                     features.map((feature, index) => (
-                        <div className={clsx('box', `box${index + 1}`, feature.styles)}>
+                        <div classNme={clsx('box', `box${index + 1}`, feature.styles)}>
                             {feature.text }
                         </div>
                     ))
