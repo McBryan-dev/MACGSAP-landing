@@ -21,10 +21,12 @@ const ModelScroll = () => {
 
             Object.assign(v, {
                 src: feature.videoPath,
+                autoplay: true,
                 muted: true,
                 playsInline: true,
-                preload: 'auto',
-                crossOrigin: 'anonymous'
+                loop: true,
+                preload: 'auto'
+                // crossOrigin: 'anonymous'
             });
             v.load();
         })
@@ -57,7 +59,7 @@ const ModelScroll = () => {
         //Content and Texture sync
         timeline
             .call(() => setTexture('/videos/feature-1.mp4'))
-            .to('box1', {opacity: 1, y: 0, delay: 1})
+            .to('box1', {opacity: 1, y: 0,})
 
             .call(() => setTexture('/videos/feature-2.mp4'))
             .to('box2', {opacity: 1, y: 0})
@@ -95,13 +97,13 @@ const Features = () => {
             <Canvas id="f-canvas" camera={{}}>
                 <StudioLights />
                 <ambientLight intensity={0.5} />
-                <ModelScroll />
+                <ModelScroll /> 
             </Canvas>
 
-            <div className="absolute inset-0">
+            <div className="">
                 {
                     features.map((feature, index) => (
-                        <div classNme={clsx('box', `box${index + 1}`, feature.styles)}>
+                        <div className={clsx('box', `box${index + 1}`, feature.styles)}>
                             {feature.text }
                         </div>
                     ))
