@@ -25,12 +25,12 @@ const ModelScroll = () => {
                 muted: true,
                 playsInline: true,
                 loop: true,
-                preload: 'auto'
-                // crossOrigin: 'anonymous'
+                preload: 'auto',
+                crossOrigin: 'anonymous'
             });
             v.load();
         })
-    }, [])
+    }, []) 
 
     useGSAP(() => {
         const modelTimeline = gsap.timeline({
@@ -59,7 +59,7 @@ const ModelScroll = () => {
         //Content and Texture sync
         timeline
             .call(() => setTexture('/videos/feature-1.mp4'))
-            .to('box1', {opacity: 1, y: 0,})
+            .to('#box1', {opacity: 1, y: 0,})
 
             .call(() => setTexture('/videos/feature-2.mp4'))
             .to('box2', {opacity: 1, y: 0})
@@ -100,11 +100,15 @@ const Features = () => {
                 <ModelScroll /> 
             </Canvas>
 
-            <div className="">
+            <div className="absolute inset-0">
                 {
                     features.map((feature, index) => (
                         <div className={clsx('box', `box${index + 1}`, feature.styles)}>
-                            {feature.text }
+                            <img src={feature.icon} alt={feature.highlight} />
+                            <p>
+                                <span className="text-white">{feature.highlight}</span>
+                                {feature.text}
+                            </p>
                         </div>
                     ))
                 }
