@@ -1,6 +1,14 @@
 import React from 'react';
+import {useGSAP} from '@gsap/react';
+import gsap from gsap;
 
 const Highlights = () => {
+    const isMobile = useMediaQuery({query: '(max-width: 1024px)'});
+
+    useGSAP(() => {
+
+    })
+
     return (
         <section id="highlights">
             <h2>There's neve been a better time to upgrade</h2>
@@ -35,7 +43,9 @@ const Highlights = () => {
                         <img src="/battery.png" alt="Battery" />
                         
                         <p>Up to 
-                            <span className='green-gradient'>{' '}14 hours{''}</span> more battery life. (Up to 24 hours total.)</p>
+                            <span className='green-gradient'>{' '}14 hours{''}
+                             more battery life. <span className='text-dark-100'>{' '}(Up to 24 hours total.)</span></span>
+                        </p>
                     </div>
                 </div>
             </div>
