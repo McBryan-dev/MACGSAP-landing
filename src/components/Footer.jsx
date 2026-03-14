@@ -5,12 +5,12 @@ const Footer = () => {
     return (
         <footer>
             <div className='info'>
-                <p>More ways to shop: Find an Apple store or other retailer near you. Or all 0080 040 1966</p>
-                <img src="/logo.svg" alt="Appe Logo" />
+                <p>More ways to shop: Find an Apple store or other retailer near you. Or call 0080 040 1966</p>
+                <img src="/logo.svg" alt="Apple Logo" />
             </div>
-            <hr />
+            <hr /> 
             <div className="links">
-                <p>Copyright © 2024 Apple Inc. All rights reserved.</p>
+                <p>Copyright © {new Date().getFullYear()} Apple Inc. All rights reserved.</p>
                 <ul>
                     {footerLinks.map(({label, link}) => (
                         <li key={label}>
